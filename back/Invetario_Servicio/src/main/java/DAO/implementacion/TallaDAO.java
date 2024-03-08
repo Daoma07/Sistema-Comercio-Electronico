@@ -95,7 +95,7 @@ public class TallaDAO implements ITallaDAO {
     public List<Talla> obtenerTodasTallas() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
-            return entityManager.createQuery("SELECT t FROM Talla t", Talla.class).getResultList();
+            return entityManager.createQuery("SELECT t  FROM Talla t", Talla.class).getResultList();
         } catch (PersistenceException e) {
             throw new PersistenceException("Error al obtener todas las tallas", e);
         } finally {
