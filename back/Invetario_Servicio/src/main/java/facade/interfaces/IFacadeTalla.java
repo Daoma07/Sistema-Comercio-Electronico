@@ -17,9 +17,9 @@ public interface IFacadeTalla {
 
     Talla crearTalla(Talla talla) throws PersistenceException;
 
-    boolean actaualizarTalla(Talla talla);
+    boolean actualizarTalla(Talla talla);
 
-    Talla consulltarTallaID(Long id);
+    Talla consultarTallaID(Long id);
 
     boolean eliminarTalla(Talla talla);
 

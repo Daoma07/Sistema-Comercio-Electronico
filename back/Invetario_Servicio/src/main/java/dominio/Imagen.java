@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "imagenes")
-class Imagen {
+public class Imagen {
 
     //Atributos
     @Id

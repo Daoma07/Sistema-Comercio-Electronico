@@ -29,13 +29,13 @@ public class FacadeTalla implements IFacadeTalla {
     }
 
     @Override
-    public boolean actaualizarTalla(Talla talla) {
-        return fabricaDAO.crearTallaDAO().actaualizarTalla(talla);
+    public boolean actualizarTalla(Talla talla) {
+        return fabricaDAO.crearTallaDAO().actualizarTalla(talla);
     }
 
     @Override
-    public Talla consulltarTallaID(Long id) {
-        return fabricaDAO.crearTallaDAO().consulltarTallaID(id);
+    public Talla consultarTallaID(Long id) {
+        return fabricaDAO.crearTallaDAO().consultarTallaID(id);
     }
 
     @Override
