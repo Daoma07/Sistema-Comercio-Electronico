@@ -40,3 +40,44 @@ submitBtn.addEventListener("click", function(){
         location.reload();
     },800);
 });
+
+function success() {
+    if(document.getElementById("textsend").value==="") { 
+           document.getElementById('button').disabled = true; 
+       } else { 
+           document.getElementById('button').disabled = false;
+       }
+   }
+
+   function success1() {
+    if(document.getElementById("textsend1").value==="") { 
+           document.getElementById('button1').disabled = true; 
+       } else { 
+           document.getElementById('button1').disabled = false;
+       }
+   }
+
+   function ValidateEmail() {
+
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+  
+    if(document.getElementById("textsend").value===(document.value.match(validRegex))) { 
+  
+      alert("Valid email address!");
+  
+      document.form1.text1.focus();
+      
+      document.getElementById('button').disabled = true; 
+      return true
+      
+    } else {
+  
+      alert("Invalid email address!");
+  
+      document.form1.text1.focus();
+  
+      document.getElementById('button').disabled = false; 
+  
+    }
+  
+  }
