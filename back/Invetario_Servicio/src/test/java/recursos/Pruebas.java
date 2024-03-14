@@ -22,11 +22,11 @@ public class Pruebas {
         // TODO code application logic here
 
         IFacade facade = new Facade();
-
+        
         Talla talla = new Talla("123", "123");
-
-        facade.useFacadeTalla().crearTalla(talla);
-
+        talla.setId_talla(1L);
+        facade.useFacadeTalla().eliminarTalla(talla);
+        
     }
-
+    
 }

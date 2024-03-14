@@ -1,0 +1,16 @@
+npm install express bcrypt cors dotenv jsonwebtoken 
+
+npm i nodemon --save-dev
+
+
+
+typescript
+npm install typescript --save-dev
+
+//////////////////////
+para ejecutar programa 
+
+npm run dev
+
+para conversion de ts a js
+npm run type

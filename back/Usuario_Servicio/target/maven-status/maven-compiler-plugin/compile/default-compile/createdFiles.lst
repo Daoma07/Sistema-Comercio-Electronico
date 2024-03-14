@@ -1,6 +1,7 @@
 dominio\Destinatario_.class
 dominio\Direccion.class
 dao\fabrica\IFabricaDAO.class
+endpoint\MensajeReceiver.class
 conexionBD\IConexionBD.class
 facade\interfaces\IFacadeCredencial.class
 facade\implementacion\FacadeDestinatario.class
@@ -8,9 +9,11 @@ dao\inerfaces\IUsuarioDAO.class
 facade\implementacion\FacadeUsuario.class
 dao\inerfaces\IDireccionDAO.class
 dominio\Credencial_.class
+negocio\UsuarioNegocio.class
 dominio\Destinatario.class
 facade\interfaces\IFacadeDireccion.class
 facade\interfaces\IFacadeUsuario.class
+endpoint\Gestor.class
 dominio\Credencial.class
 dao\implementacion\CredencialDAO.class
 dominio\Usuario.class
@@ -25,6 +28,7 @@ dao\implementacion\DestinatarioDAO.class
 dominio\Direccion_.class
 dao\implementacion\UsuarioDAO.class
 dao\inerfaces\IDestinatarioDAO.class
+endpoint\MensajeSender.class
 dao\inerfaces\ICredencialDAO.class
 facade\implementacion\FacadeDireccion.class
 facade\interfaces\IFacadeDestinatario.class
