@@ -96,7 +96,7 @@ public class ImagenDAO implements IImagenDAO
     }
 
     @Override
-    public List<Imagen> obtenerTodasTallas() {
+    public List<Imagen> obtenerTodasImagen() {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         try {
             return entityManager.createQuery("SELECT t  FROM imagenes i", Imagen.class).getResultList();
