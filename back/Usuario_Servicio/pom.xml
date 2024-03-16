@@ -73,5 +73,10 @@
             <version>2.7.12</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>Mensaje_Despachador</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 </project>

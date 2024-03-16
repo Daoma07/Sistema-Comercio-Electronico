@@ -3,7 +3,7 @@ package endpoint;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rabbitmq.client.*;
-import negocio.UsuarioNegocio;
+import negocio.implementaciones.UsuarioNegocio;
 
 public class MensajeReceiver {
 

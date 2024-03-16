@@ -31,8 +31,10 @@ public class GenerarBasedeDatos {
                 "Lopez", "6442121314", new Date(2002, 06, 07),
                 Genero.MASCULINO, TipoUsuario.ENCARGADO,
                 new Credencial("daoma222@hotmail.com", "123"));
-
+        //usuario.setId_usuario(1L);
         facade.useFacadeUsuario().crearUsuario(usuario);
+
+        //facade.useFacadeUsuario().eliminarUsuario(usuario);
     }
 
 }

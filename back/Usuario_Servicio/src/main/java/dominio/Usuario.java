@@ -201,4 +201,9 @@ public class Usuario {
         return Objects.equals(this.id_usuario, other.id_usuario);
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" + "id_usuario=" + id_usuario + ", nombres=" + nombres + ", apellido_paterno=" + apellido_paterno + ", apellido_materno=" + apellido_materno + ", telefono=" + telefono + ", fecha_nacimiento=" + fecha_nacimiento + ", genero=" + genero + ", tipo_usuario=" + tipo_usuario + '}';
+    }
+
 }
