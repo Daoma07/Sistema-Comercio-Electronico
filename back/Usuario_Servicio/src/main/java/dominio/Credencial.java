@@ -63,7 +63,7 @@ public class Credencial {
     }
 
     public boolean validarCredencial(String correo, String contrasenia) {
-        if (this.correo.equals(correo) && this.contrasenia.equals(this.contrasenia)) {
+        if (this.correo.equals(correo) && this.contrasenia.equals(contrasenia)) {
             return true;
         }
         return false;

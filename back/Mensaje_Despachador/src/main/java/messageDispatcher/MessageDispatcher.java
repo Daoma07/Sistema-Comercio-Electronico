@@ -4,35 +4,28 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
-public class MessageDispatcher implements IMessageDispatcher {
+public class MessageDispatcher {
 
-    private final Map<String, Function<String, ?>> handlers;
+    private final Map<String, MessageHandler<?>> handlers;
 
     public MessageDispatcher() {
         handlers = new HashMap<>();
     }
 
-    @Override
-    public <T> void registerHandler(String messageType, Function<String, T> handler) {
-        if (messageType == null && handler == null) {
-            System.out.println("Datos faltantes");
-        } else {
+    public <T> void registerHandler(String messageType, MessageHandler<T> handler) {
+        if (messageType != null && handler != null) {
             handlers.put(messageType, handler);
+        } else {
+            System.out.println("Datos faltantes");
         }
-
     }
 
-    @Override
     public <T> T dispatch(String messageType, String messageContent) {
-        Function<String, ?> handler = handlers.get(messageType);
+        MessageHandler<?> handler = handlers.get(messageType);
         if (handler != null) {
-            if (messageContent != null) {
-                // Invocar al manejador y devolver el resultado
-                return (T) handler.apply(messageContent);
-            } else {
-                System.out.println("No se encontraron los datos correspondiente");
-                return null;
-            }
+            @SuppressWarnings("unchecked")
+            MessageHandler<T> typedHandler = (MessageHandler<T>) handler;
+            return typedHandler.handle(messageContent);
         } else {
             System.out.println("No se encontró ningún manejador para el tipo de mensaje: " + messageType);
             return null;

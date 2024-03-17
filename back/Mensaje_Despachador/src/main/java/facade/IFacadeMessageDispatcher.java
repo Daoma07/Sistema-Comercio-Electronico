@@ -5,6 +5,7 @@
 package facade;
 
 import java.util.function.Function;
+import messageDispatcher.MessageHandler;
 
 /**
  *
@@ -12,7 +13,7 @@ import java.util.function.Function;
  */
 public interface IFacadeMessageDispatcher {
 
-    public <T> void registerHandler(String messageType, Function<String, T> handler);
+    public <T> void registerHandler(String messageType, MessageHandler<T> handler);
 
     public <T> T dispatch(String messageType, String messageContent);
 }

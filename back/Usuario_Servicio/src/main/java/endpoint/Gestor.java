@@ -4,10 +4,13 @@
  */
 package endpoint;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import dominio.Usuario;
 import facade.FacadeMessageDispatcher;
 import facade.IFacadeMessageDispatcher;
 import negocio.implementaciones.UsuarioNegocio;
-import negocio.interfaces.IUsuarioNegocio;
 
 /**
  *
@@ -15,12 +18,15 @@ import negocio.interfaces.IUsuarioNegocio;
  */
 public class Gestor {
 
-    private IUsuarioNegocio usuarioNegocio;
+    private UsuarioNegocio usuarioNegocio;
     private IFacadeMessageDispatcher facadeMessageDispatcher;
+    private ObjectMapper objectMapper;
 
     public Gestor() {
         this.usuarioNegocio = new UsuarioNegocio();
         this.facadeMessageDispatcher = new FacadeMessageDispatcher();
+        objectMapper = new ObjectMapper();
+        this.registrarManejadores();
     }
 
     // Registrar los manejadores
@@ -30,6 +36,13 @@ public class Gestor {
     }
 
     private void manejadoresUsuario() {
-        facadeMessageDispatcher.dispatch("login", usuarioNegocio::Login);
+        facadeMessageDispatcher.registerHandler("login", usuarioNegocio::login);
+    }
+
+    public void getMessage(String correlationId, String message) throws JsonProcessingException {
+        JsonNode jsonNode = objectMapper.readTree(message);
+        // Acceder a las propiedades del JSON
+        String action = jsonNode.get("action").asText();
+        facadeMessageDispatcher.dispatch(action, message);
     }
 }

@@ -2,6 +2,7 @@ package endpoint;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.rabbitmq.client.*;
 import negocio.implementaciones.UsuarioNegocio;
 
@@ -13,6 +14,7 @@ public class MensajeReceiver {
 
     public static void main(String[] argv) throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
+        Gestor gestor = new Gestor();
         factory.setHost("localhost");
         factory.setUsername("root");
         factory.setPassword("1234");
@@ -29,15 +31,11 @@ public class MensajeReceiver {
 
             String message = new String(delivery.getBody(), "UTF-8");
             System.out.println(" [x] Recibido desde API Gateway: '" + message + "'");
-            ObjectMapper objectMapper = new ObjectMapper();
-            JsonNode jsonNode = objectMapper.readTree(message);
 
-            // Acceder a las propiedades del JSON
-            String correo = jsonNode.get("correo").asText();
-            String contrasenia = jsonNode.get("contrasenia").asText();
+            // Agregar el valor "correlationId"
+            String correlationId = delivery.getProperties().getCorrelationId();
 
-            UsuarioNegocio negocio = new UsuarioNegocio();
-            System.out.println(negocio.buscarUsuarioLogin(correo, contrasenia));
+            gestor.getMessage(correlationId, message);
         };
 
         channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {

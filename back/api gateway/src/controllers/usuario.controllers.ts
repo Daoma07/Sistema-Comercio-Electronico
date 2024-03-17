@@ -11,14 +11,16 @@ export const nuevoUsuario = (req: Request, res: Response) => {
 
 
 export const loginUsuario = (req: Request, res: Response) => {
+    const { correo, contrasenia, action } = req.body;
+    const credenciales = JSON.stringify({ correo, contrasenia, action });
 
-    const { correo, contrasenia } = req.body;
-    const credenciales = JSON.stringify({ correo, contrasenia })
-    console.log(correo);
-    console.log(contrasenia);
-    enviarMensaje(credenciales);
-    res.json({
-        msg: "Nuevo Usuario",
+    enviarMensaje(credenciales, (respuesta: string) => {
+        // Manejar la respuesta del microservicio aquí
+        console.log("Respuesta del microservicio:", respuesta);
 
-    })
-}
+        // Enviar la respuesta al cliente
+        res.json({
+            respuesta
+        });
+    });
+};

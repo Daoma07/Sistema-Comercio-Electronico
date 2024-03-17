@@ -1,28 +1,24 @@
 package facade;
 
-import java.util.function.Function;
-import messageDispatcher.IMessageDispatcher;
 import messageDispatcher.MessageDispatcher;
+import messageDispatcher.MessageHandler;
 
 public class FacadeMessageDispatcher implements IFacadeMessageDispatcher {
 
-    IMessageDispatcher messageDispatcher;
+    MessageDispatcher messageDispatcher;
 
     public FacadeMessageDispatcher() {
         this.messageDispatcher = new MessageDispatcher();
     }
 
     @Override
-    public <T> void registerHandler(String messageType, Function<String, T> handler
-    ) {
-        this.messageDispatcher.registerHandler(messageType, handler);
+    public <T> void registerHandler(String messageType, MessageHandler<T> handler) {
+        messageDispatcher.registerHandler(messageType, handler);
     }
 
     @Override
-    public <T> T dispatch(String messageType,
-            String messageContent
-    ) {
-        return this.dispatch(messageType, messageContent);
+    public <T> T dispatch(String messageType, String messageContent) {
+        return messageDispatcher.dispatch(messageType, messageContent);
     }
 
 }

@@ -10,9 +10,8 @@ import java.util.function.Function;
  *
  * @author Daniel
  */
-public interface IMessageDispatcher {
+@FunctionalInterface
+public interface MessageHandler<T> {
 
-    public <T> void registerHandler(String messageType, Function<String, T> handler);
-
-    public <T> T dispatch(String messageType, String messageContent);
+    T handle(String messageContent);
 }

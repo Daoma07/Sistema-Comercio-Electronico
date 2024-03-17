@@ -9,7 +9,6 @@ dao\inerfaces\IUsuarioDAO.class
 facade\implementacion\FacadeUsuario.class
 dao\inerfaces\IDireccionDAO.class
 dominio\Credencial_.class
-negocio\UsuarioNegocio.class
 dominio\Destinatario.class
 facade\interfaces\IFacadeDireccion.class
 facade\interfaces\IFacadeUsuario.class
@@ -33,4 +32,5 @@ dao\inerfaces\ICredencialDAO.class
 facade\implementacion\FacadeDireccion.class
 facade\interfaces\IFacadeDestinatario.class
 dao\fabrica\FabricaDAO.class
+negocio\implementaciones\UsuarioNegocio.class
 facade\implementacion\FacadeCredencial.class

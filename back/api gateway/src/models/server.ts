@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
 import routesUsuario from '../routes/usuario.routes'
+import { iniciarConsumidor } from '../endpoints/consumidor';
 
 
 class Server {
