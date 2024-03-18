@@ -60,7 +60,7 @@ public class UsuarioNegocio {
                     return jsonString;
                 }
             }
-            return null;
+            return "";
         } catch (JsonProcessingException ex) {
             Logger.getLogger(UsuarioNegocio.class.getName()).log(Level.SEVERE, null, ex);
         } catch (Exception ex) {
