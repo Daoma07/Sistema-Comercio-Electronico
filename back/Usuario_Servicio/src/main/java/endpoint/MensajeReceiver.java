@@ -25,7 +25,7 @@ public class MensajeReceiver {
         channel.queueDeclare(QUEUE_NAME, false, false, false, null);
         channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, ROUTING_KEY);
 
-        System.out.println(" [*] Esperando mensajes desde API Gateway. Para salir, presiona CTRL+C");
+        System.out.println(" [*] Esperando mensajes desde API Gateway");
 
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
 
@@ -34,8 +34,7 @@ public class MensajeReceiver {
 
             // Agregar el valor "correlationId"
             String correlationId = delivery.getProperties().getCorrelationId();
-
-            gestor.getMessage(correlationId, message);
+            gestor.manejarMensaje(correlationId, message);
         };
 
         channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {
