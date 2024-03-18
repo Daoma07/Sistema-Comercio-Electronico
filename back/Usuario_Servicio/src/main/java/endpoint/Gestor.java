@@ -42,6 +42,7 @@ public class Gestor {
 
     private void manejadoresUsuario() {
         facadeMessageDispatcher.registerHandler("login", usuarioNegocio::login);
+        facadeMessageDispatcher.registerHandler("registrar", usuarioNegocio::registrar);
     }
 
     public void manejarMensaje(String correlationId, String mensaje) throws JsonProcessingException {
