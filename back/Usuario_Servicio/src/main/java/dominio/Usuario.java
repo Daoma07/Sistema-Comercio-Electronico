@@ -57,7 +57,7 @@ public class Usuario {
     @JoinColumn(name = "credencial_id")
     private Credencial credencial;
 
-    @OneToMany(mappedBy = "usuario", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "usuario", cascade = {CascadeType.ALL})
     private List<Direccion> direcciones;
 
     public Usuario() {

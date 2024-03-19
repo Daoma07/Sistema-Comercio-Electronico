@@ -1,17 +1,9 @@
 package facade;
 
-import facade.interfaces.IFacadeCredencial;
-import facade.interfaces.IFacadeDestinatario;
-import facade.interfaces.IFacadeDireccion;
-import facade.interfaces.IFacadeUsuario;
-
 public interface IFacade {
 
-    IFacadeCredencial useFacadeCredencial();
+    String loginUsuario(String messageConten);
 
-    IFacadeDestinatario useFacadeDestinatario();
+    String registarUsuario(String messageContent);
 
-    IFacadeDireccion useFacadeDireccion();
-
-    IFacadeUsuario useFacadeUsuario();
 }

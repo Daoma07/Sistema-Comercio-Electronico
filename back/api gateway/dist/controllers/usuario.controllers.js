@@ -17,7 +17,8 @@ const registarUsuario = (req, res) => {
         sexo,
         colonia,
         calle,
-        numero, action
+        numero,
+        action
     });
     (0, producto_1.enviarMensaje)(datosRegistro, (respuesta) => {
         // Manejar la respuesta del microservicio aquí
@@ -48,7 +49,8 @@ const registarUsuario = (req, res) => {
 };
 exports.registarUsuario = registarUsuario;
 const loginUsuario = (req, res) => {
-    const { correo, contrasenia, action } = req.body;
+    const { correo, contrasenia } = req.body;
+    const action = "login";
     const credenciales = JSON.stringify({ correo, contrasenia, action });
     (0, producto_1.enviarMensaje)(credenciales, (respuesta) => {
         // Manejar la respuesta del microservicio aquí
@@ -58,13 +60,11 @@ const loginUsuario = (req, res) => {
                 // Parsea la respuesta del microservicio
                 const respuestaServidor = JSON.parse(respuesta);
                 // Extrae los datos relevantes de la respuesta
-                const { nombre, apellido_paterno, apellido_materno, telefono } = respuestaServidor;
+                const { msg, id } = respuestaServidor;
                 // Envia los datos al cliente como una respuesta JSON
                 res.json({
-                    nombre,
-                    apellido_paterno,
-                    apellido_materno,
-                    telefono
+                    msg,
+                    id
                 });
             }
             catch (error) {

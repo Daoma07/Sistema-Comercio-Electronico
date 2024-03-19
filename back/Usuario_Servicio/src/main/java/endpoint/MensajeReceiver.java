@@ -1,40 +1,63 @@
 package endpoint;
 
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.rabbitmq.client.*;
-import negocio.implementaciones.UsuarioNegocio;
+import conexionMensajeria.IConexionMensajeria;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import observer.Observable;
+import observer.Observer;
 
-public class MensajeReceiver {
+/**
+ * Clase que representa un receptor de mensajes desde RabbitMQ
+ *
+ * Esta clase se encarga de recibir mensajes desde un intercambio de RabbitMQ y
+ * pasarlos al gestor correspondiente para su procesamiento.
+ */
+public class MensajeReceiver implements Observable {
 
-    private final static String EXCHANGE_NAME = "exchange-microservicios";
-    private final static String ROUTING_KEY = "microservicio-usuario";
-    private final static String QUEUE_NAME = "queue-microservicio-usuario";
+    // Nombre del intercambio
+    private static final String EXCHANGE_NAME = "exchange-microservicios";
+    // Clave de enrutamiento
+    private static final String ROUTING_KEY = "microservicio-usuario";
+    // Nombre de la cola
+    private static final String QUEUE_NAME = "queue-microservicio-usuario";
 
-    public static void main(String[] argv) throws Exception {
-        ConnectionFactory factory = new ConnectionFactory();
-        Gestor gestor = new Gestor();
-        factory.setHost("localhost");
-        factory.setUsername("root");
-        factory.setPassword("1234");
+    // Objeto para manejar la conexión a la mensajería
+    private IConexionMensajeria conexionMensajeria;
 
-        Connection connection = factory.newConnection();
+    // Observadores encargados de reaccionar a mensajes que lleguen
+    private final List<Observer> observers = new ArrayList<>();
+
+    public MensajeReceiver(IConexionMensajeria conexionMensajeria) {
+        this.conexionMensajeria = conexionMensajeria;
+    }
+
+    /**
+     * Método para recibir mensajes desde RabbitMQ
+     *
+     * Este método establece una conexión con RabbitMQ, declara un intercambio y
+     * una cola, y luego se pone a la escucha de mensajes en la cola. Cuando
+     * llega un mensaje, lo pasa al gestor para su procesamiento.
+     *
+     *
+     */
+    public void escucharMensajes() throws Exception {
+
+        Connection connection = conexionMensajeria.useConnection();
         Channel channel = connection.createChannel();
-        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
-        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
-        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, ROUTING_KEY);
+
+        configurarCanal(channel);
 
         System.out.println(" [*] Esperando mensajes desde API Gateway");
 
         DeliverCallback deliverCallback = (consumerTag, delivery) -> {
 
-            String message = new String(delivery.getBody(), "UTF-8");
-            System.out.println(" [x] Recibido desde API Gateway: '" + message + "'");
-
+            String mensaje = new String(delivery.getBody(), "UTF-8");
+            System.out.println(" [x] Recibido desde API Gateway: '" + mensaje + "'");
             // Agregar el valor "correlationId"
-            String correlationId = delivery.getProperties().getCorrelationId();
-            gestor.manejarMensaje(correlationId, message);
+            String id = delivery.getProperties().getCorrelationId();
+            notifyObservers(id, mensaje);
         };
 
         channel.basicConsume(QUEUE_NAME, true, deliverCallback, consumerTag -> {
@@ -42,4 +65,25 @@ public class MensajeReceiver {
 
     }
 
+    private void configurarCanal(Channel channel) throws IOException {
+        channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.TOPIC);
+        channel.queueDeclare(QUEUE_NAME, false, false, false, null);
+        channel.queueBind(QUEUE_NAME, EXCHANGE_NAME, ROUTING_KEY);
+    }
+
+    public void addObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void deleteObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers(String id, String mensaje) {
+        for (Observer observer : new ArrayList<>(observers)) {
+            observer.update(id, mensaje);
+        }
+    }
 }

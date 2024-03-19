@@ -1,5 +1,6 @@
 import express, { Application } from 'express';
 import routesUsuario from '../routes/usuario.routes'
+import cors from "cors";
 import { iniciarConsumidor } from '../endpoints/consumidor';
 
 
@@ -28,6 +29,7 @@ class Server {
 
     midlewares() {
         this.app.use(express.json());
+        this.app.use(cors());
     }
 }
 

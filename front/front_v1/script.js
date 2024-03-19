@@ -52,8 +52,10 @@ submitBtn.addEventListener("click", function () {
     const genero = document.querySelector('select').value;
     const colonia = document.querySelectorAll('input[type="text"]')[5].value;
     const calle = document.querySelectorAll('input[type="text"]')[6].value;
-    const numero = document.querySelectorAll('input[type="number"]').value;
+    const numero = document.querySelectorAll('input[type="text"]')[7].value;
     const action = "registrar";
+
+    console.log(numero);
 
     // Construir el objeto con la información del formulario
     const formData = {
@@ -61,7 +63,7 @@ submitBtn.addEventListener("click", function () {
         apellido_paterno: apellidoPaterno,
         apellido_materno: apellidoMaterno,
         correo: correoElectronico,
-        password_: password,
+        password: password,
         telefono: telefono,
         estado: estado,
         ciudad: ciudad,
@@ -86,10 +88,12 @@ submitBtn.addEventListener("click", function () {
         .then(response => response.json())
         .then(data => {
             // Manejar la respuesta de la API
-            alert(data.body);
-            location.reload();
+            alert(data.msg);
+            window.location.href = 'login.html';
+
         })
         .catch(error => {
+            location.reload();
             console.error('Error al enviar los datos:', error);
             // Manejar el error
         });

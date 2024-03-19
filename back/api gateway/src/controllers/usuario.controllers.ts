@@ -14,6 +14,9 @@ export const registarUsuario = (req: Request, res: Response) => {
         colonia,
         calle,
         numero } = req.body;
+
+
+
     const action: string = "registrar";
     const datosRegistro = JSON.stringify({
         nombres, apellido_paterno,
@@ -27,7 +30,8 @@ export const registarUsuario = (req: Request, res: Response) => {
         sexo,
         colonia,
         calle,
-        numero, action
+        numero,
+        action
     });
 
 
@@ -63,8 +67,11 @@ export const registarUsuario = (req: Request, res: Response) => {
 }
 
 
+
+
 export const loginUsuario = (req: Request, res: Response) => {
-    const { correo, contrasenia, action } = req.body;
+    const { correo, contrasenia } = req.body;
+    const action: string = "login";
     const credenciales = JSON.stringify({ correo, contrasenia, action });
 
 
@@ -78,15 +85,13 @@ export const loginUsuario = (req: Request, res: Response) => {
                 const respuestaServidor = JSON.parse(respuesta);
 
                 // Extrae los datos relevantes de la respuesta
-                const { nombre, apellido_paterno, apellido_materno, telefono } = respuestaServidor;
+                const { msg, id } = respuestaServidor;
 
                 // Envia los datos al cliente como una respuesta JSON
                 res.json({
 
-                    nombre,
-                    apellido_paterno,
-                    apellido_materno,
-                    telefono
+                    msg,
+                    id
 
                 });
             } catch (error) {
