@@ -1,0 +1,8 @@
+{
+    "name": "SistemaECommerce_Front",
+    "version": "1.0.0",
+    "keywords": ["util", "functional", "server", "client", "browser"],
+    "author": "Jairi",
+    "contributors": [],
+    "dependencies": {}
+}
