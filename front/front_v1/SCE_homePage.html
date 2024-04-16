@@ -4,82 +4,130 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HomePage</title>
-    <link rel="stylesheet" href="css/homePage.css">
+    <link rel="stylesheet" href="homePage.css">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
 </head>
 <body>
-    <header>
-        <a href="SCE_homePage.html"><img src="img/BotasJuasinoLogo_backgroundless.png" class="logo-principal"></a>
-        <div class="container-icon">
-        <figure>
-        <img src="img/icono-carrito.png" 
-        class="icon-cart">
-        </figure>
-        </div>
-    </header>
+    <header id="header">
+        <div class="container-hero">
+            <div class="container hero">
+                <div class="customer-support">
+                    <i class="fa-solid fa-headset"></i>
+                    <div class="content-customer-support">
+                        <span class="text">¡Llámanos!</span>
+                        <span class="number">+52 644 279 7185</span>
+                    </div>
+                </div>
 
-    <div class="container-items">
-        <div class="container-items">
-            <div class="item">
-            <figure>
-                <img 
-                src="img/botas 5.jpg" 
-                    alt="producto"
-                    />
-            </figure>
-            <div class="info-product">
-                <h2>Zapatos de Piel</h2>
-                <p class="price">$3500</p>
-                <button>Añadir al carrito</button>
+                <div class="container-logo">
+                    
+                    <h1 class="logo"><a href="SCE_homePage.html">Botas Jusaino</a></h1>
+                </div>
+
+                <div class="container-user">
+                    <a href="SCE_homePageUser.html"> <i class="fa-solid fa-user"></i></a>
+                    <i id="carrito" class="fa-solid fa-basket-shopping"></i>
+                    <div class="content-shopping-cart">
+                        <span class="text">Carrito</span>
+                        <div id="numero"><span class="number">(0)</span></div>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <div class="container-navbar">
+            <nav class="navbar container">
+                <i class="fa-solid fa-bars"></i>
+                <ul class="menu">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="SCE_Admin.html">Registrar Prodcuto</a></li>
+                </ul>
+                <form class="search-form">
+                    <input type="search" placeholder="Buscar..." />
+                    <button class="btn-search">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </form>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <div id="contenedor" class="contenedor"> </div>
+    </main>
+    
+    <div id="contenedorCompra">
+        <div class="informacionCompra" id="informacionCompra">
+            <h2>Carrito de Compra</h2>
+            <p class="x" id="x">x</p>
         </div>
 
-    <div class="container-items">
-        <div class="item">
-        <figure>
-            <img 
-            src="img/botas 2.jpg" 
-                alt="producto"
-                />
-        </figure>
-        <div class="info-product">
-            <h2>Zapatos de Piel</h2>
-            <p class="price">$550</p>
-            <button>Añadir al carrito</button>
-        </div>
+        <div class="productosCompra" id="productosCompra"></div>
+        <div class="total" id="total"></div>
+        <button>Finalizar Compra</button>
     </div>
-    </div>
-    <div class="container-items">
-        <div class="item">
-        <figure>
-            <img 
-            src="img/botas 3.jpg" 
-                alt="producto"
-                />
-        </figure>
-        <div class="info-product">
-            <h2>Zapatos de Piel</h2>
-            <p class="price">$3500</p>
-            <button>Añadir al carrito</button>
-        </div>
-    </div>
-</div>
-<div class="container-items">
-    <div class="item">
-    <figure>
-        <img 
-        src="img/botas 4.jpg" 
-            alt="producto"
-            />
-    </figure>
-    <div class="info-product">
-        <h2>Zapatos de Piel</h2>
-        <p class="price">$3500</p>
-        <button>Añadir al carrito</button>
-    </div>
-</div>
-</div>
 
+<!-- FOOTER-->
+<footer class="footer">
+    <div class="container container-footer">
+        <div class="menu-footer">
+            <div class="contact-info">
+                <p class="title-footer">Información de Contacto</p>
+                <ul>
+                    <li>
+                        Dirección: Bulevard Ramirez 503-A esquina, Donato Guerra entre Donato Guerra y Michoacan, 85160 Cdad. Obregón, Son.
+                    </li>
+                    <li>Teléfono: +52 644 279 7185</li>
+                    <li>EmaiL: botasjuasino@gmail.com</li>
+                
+                </ul>
+                <div class="social-icons">
+                    <span class="facebook">
+                        <a href="https://www.facebook.com/botasjusaino.19/"><i class="fa-brands fa-facebook-f" ></i></a>
+                    </span>
+                </div>
+            </div>
+            <div class="Horario">
+                <p class="title-footer">Horario</p>
+                <ul>
+                    <li>Lunes: 9 AM - 7 PM</li>
+                    <li>Martes: 9 AM - 7 PM</li>
+                    <li>Miércoles: 9 AM - 7 PM</li>
+                    <li>Jueves: 9 AM - 7 PM</li>
+                    <li>Viernes: 9 AM - 7 PM</li>
+                    <li>Sábado: 9 AM - 7 PM</li>
+                    <li>Domingo: 12 AM - 9   PM</li>
+                </ul>
+            </div>
+
+
+        </div>
+
+        <div class="copyright">
+            <p>
+                Desarrollado por Daniel y Mario &copy; 2024
+            </p>
+        </div>
+    </div>
+</footer>
+
+
+
+    <script
+    src="https://kit.fontawesome.com/81581fb069.js"
+    crossorigin="anonymous"
+></script>
+<script src="SCE_homePage.js"></script>
 </body>
 </html>
-
