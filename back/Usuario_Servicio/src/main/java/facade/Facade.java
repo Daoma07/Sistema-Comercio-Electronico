@@ -1,42 +1,23 @@
 package facade;
 
-import dao.fabrica.FabricaDAO;
-import dao.fabrica.IFabricaDAO;
-import facade.implementacion.FacadeCredencial;
-import facade.implementacion.FacadeDestinatario;
-import facade.implementacion.FacadeDireccion;
-import facade.implementacion.FacadeUsuario;
-import facade.interfaces.IFacadeCredencial;
-import facade.interfaces.IFacadeDestinatario;
-import facade.interfaces.IFacadeDireccion;
-import facade.interfaces.IFacadeUsuario;
+import negocio.fabrica.IFabricaNegocio;
 
 public class Facade implements IFacade {
 
-    private IFabricaDAO fabricaDAO;
+    private IFabricaNegocio fabricaNegocio;
 
-    public Facade() {
-        this.fabricaDAO = new FabricaDAO();
+    public Facade(IFabricaNegocio fabricaNegocio) {
+        this.fabricaNegocio = fabricaNegocio;
     }
 
     @Override
-    public IFacadeCredencial useFacadeCredencial() {
-        return new FacadeCredencial(fabricaDAO);
+    public String loginUsuario(String messageConten) {
+        return fabricaNegocio.crearUsuarioNegocio().loginUsuario(messageConten);
     }
 
     @Override
-    public IFacadeDestinatario useFacadeDestinatario() {
-        return new FacadeDestinatario(fabricaDAO);
-    }
-
-    @Override
-    public IFacadeDireccion useFacadeDireccion() {
-        return new FacadeDireccion(fabricaDAO);
-    }
-
-    @Override
-    public IFacadeUsuario useFacadeUsuario() {
-        return new FacadeUsuario(fabricaDAO);
+    public String registarUsuario(String messageContent) {
+        return fabricaNegocio.crearUsuarioNegocio().registarUsuario(messageContent);
     }
 
 }

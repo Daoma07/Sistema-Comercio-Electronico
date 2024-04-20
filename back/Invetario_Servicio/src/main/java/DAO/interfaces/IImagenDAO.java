@@ -14,7 +14,7 @@ public interface IImagenDAO
     
     boolean eliminarImagen(Imagen imagen);
     
-    List<Imagen> obtenerTodasTallas();
+    List<Imagen> obtenerTodasImagen();
     
     
 }

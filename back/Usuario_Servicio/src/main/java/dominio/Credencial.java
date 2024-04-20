@@ -62,6 +62,13 @@ public class Credencial {
         this.contrasenia = contrasenia;
     }
 
+    public boolean validarCredencial(Credencial credencial) {
+        if (this.correo.equals(credencial.getCorreo()) && this.contrasenia.equals(this.getContrasenia())) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -70,7 +77,8 @@ public class Credencial {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj
+    ) {
         if (this == obj) {
             return true;
         }

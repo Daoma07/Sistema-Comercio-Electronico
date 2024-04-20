@@ -1,0 +1,9 @@
+com\mycompany\utilities\Utilities.class
+com\mycompany\utilities\request\RequestFormat.class
+com\mycompany\utilities\dto\DestinatarioDto.class
+com\mycompany\utilities\dto\DireccionDto.class
+com\mycompany\utilities\dto\tipo_usuarios\TipoUsuario.class
+com\mycompany\utilities\response\ResponseFormat.class
+com\mycompany\utilities\dto\generos\Genero.class
+com\mycompany\utilities\dto\UsuarioDto.class
+com\mycompany\utilities\dto\CredencialDto.class

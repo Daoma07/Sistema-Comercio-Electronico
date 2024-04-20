@@ -1,0 +1,20 @@
+///Para ejecutar docker compose, solo es pocisionarse en la carpte 
+nombrecompose up
+
+docker exec -it postgresql-container psql -U root -d usuario_db
+
+entar al cliente de postgresql
+
+comandos
+2. Listar BD
+\l
+
+4. Listar tablas
+\dt
+
+6. Eliminar base datos
+DROP DATABASE dbname;
+
+
+entar al cliente de mysql
+docker exec -it mysql-container mysql -u root -p

@@ -5,13 +5,11 @@
  */
 package test;
 
+import dao.fabrica.FabricaDAO;
 import dominio.Credencial;
 import dominio.Genero;
 import dominio.TipoUsuario;
 import dominio.Usuario;
-import facade.Facade;
-import facade.IFacade;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -24,15 +22,14 @@ public class GenerarBasedeDatos {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        IFacade facade = new Facade();
-
+        FabricaDAO fabricaDAO = new FabricaDAO();
         Usuario usuario = new Usuario("Daniel", "Alameda",
                 "Lopez", "6442121314", new Date(2002, 06, 07),
                 Genero.MASCULINO, TipoUsuario.ENCARGADO,
                 new Credencial("daoma222@hotmail.com", "123"));
+        //usuario.setId_usuario(1L);
 
-        facade.useFacadeUsuario().crearUsuario(usuario);
+        fabricaDAO.crearUsuarioDAO().crearUsuario(usuario);
     }
 
 }

@@ -57,7 +57,7 @@ public class Usuario {
     @JoinColumn(name = "credencial_id")
     private Credencial credencial;
 
-    @OneToMany(mappedBy = "usuario", cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    @OneToMany(mappedBy = "usuario", cascade = {CascadeType.ALL})
     private List<Direccion> direcciones;
 
     public Usuario() {
@@ -199,6 +199,11 @@ public class Usuario {
         }
         final Usuario other = (Usuario) obj;
         return Objects.equals(this.id_usuario, other.id_usuario);
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id_usuario=" + id_usuario + ", nombres=" + nombres + ", apellido_paterno=" + apellido_paterno + ", apellido_materno=" + apellido_materno + ", telefono=" + telefono + ", fecha_nacimiento=" + fecha_nacimiento + ", genero=" + genero + ", tipo_usuario=" + tipo_usuario + '}';
     }
 
 }
